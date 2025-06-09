@@ -1,4 +1,4 @@
 com\example\controllers\ControleDeFrota.class
-com\example\dto\FrotaDTO.class
 com\example\models\Frota.class
+com\example\dto\DisponibilidadeDTO.class
 com\example\repository\FrotaRepository.class

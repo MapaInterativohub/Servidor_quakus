@@ -7,7 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-@Entity
+@Entity // Informa ao JPA que esta classe representa uma tabela do banco de dados
 @Table(name = "frota")
 
 // name = Define o nome da coluna no banco de dados. Por padrão, é o nome do
@@ -29,55 +29,97 @@ import jakarta.persistence.Table;
 // table = Especifica o nome da tabela secundária caso o campo pertença a outra
 // tabela. Pouco usado.
 
-public class Frota {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) //VALOR DE ALTO INCREMENTAVEL
-    private long id;
-    @Column(nullable = false) // NÃO PODE RECEBER NULL
-    private String modeloCaminhao;
-    @Column(nullable = false, unique = true) // NÃO PODE RECEBER NULL E NÃO PODE TER INTENS REPETIDOS
-    private String placa;
-    private int capacidadeDeCarga;
-    private boolean disponivel = true;
 
+public class Frota {
+    @Id // Indica que este campo é a chave primária da entidade
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // O valor é gerado automaticamente (auto-incremento)
+    private long id;
+
+    @Column(nullable = false) // Campo obrigatório (não pode ser nulo)
+    private String modeloCaminhao; // Modelo do caminhão (ex: Volvo FH, Scania R)
+
+
+    @Column(nullable = false, unique = true) // Campo obrigatório e único (placa não pode se repetir)
+    private String placa; // Placa do veículo
+
+
+    private int capacidadeDeCarga; // Capacidade de carga do caminhão, em kg ou toneladas
+
+
+    private boolean disponivel = true; // Indica se a frota está disponível em geral (para uso)
+    private boolean veiculoDisponivel = true; // Especificamente se o veículo está livre
+    private boolean motoristaDisponivel = true; // Especificamente se há motorista disponível
+
+
+      // ===== Getters e Setters =====
+    
+    // Retorna o ID do caminhão
     public long getId() {
         return id;
     }
 
+    // Define o ID do caminhão
     public void setId(long id) {
         this.id = id;
     }
 
-    public String getModeloCaminha() {
+    // Retorna o modelo do caminhão
+    public String getModeloCaminhao() {
         return modeloCaminhao;
     }
 
-    public void setModeloCaminha(String modeloCaminha) {
-        this.modeloCaminhao = modeloCaminha;
+    // Define o modelo do caminhão
+    public void setModeloCaminhao(String modeloCaminhao) {
+        this.modeloCaminhao = modeloCaminhao;
     }
 
+    // Retorna a placa do veículo
     public String getPlaca() {
         return placa;
     }
 
+    // Define a placa do veículo
     public void setPlaca(String placa) {
         this.placa = placa;
     }
 
+    // Retorna a capacidade de carga
     public int getCapacidadeDeCarga() {
         return capacidadeDeCarga;
     }
 
+    // Define a capacidade de carga
     public void setCapacidadeDeCarga(int capacidadeDeCarga) {
         this.capacidadeDeCarga = capacidadeDeCarga;
     }
 
+    // Retorna se a frota está disponível
     public boolean isDisponivel() {
         return disponivel;
     }
 
+    // Define a disponibilidade geral da frota
     public void setDisponivel(boolean disponivel) {
         this.disponivel = disponivel;
     }
 
+    // Retorna se o veículo está disponível
+    public boolean isVeiculoDisponivel() {
+        return veiculoDisponivel;
+    }
+
+    // Define se o veículo está disponível
+    public void setVeiculoDisponivel(boolean veiculoDisponivel) {
+        this.veiculoDisponivel = veiculoDisponivel;
+    }
+
+    // Retorna se há motorista disponível
+    public boolean isMotoristaDisponivel() {
+        return motoristaDisponivel;
+    }
+
+    // Define se há motorista disponível
+    public void setMotoristaDisponivel(boolean motoristaDisponivel) {
+        this.motoristaDisponivel = motoristaDisponivel;
+    }
 }
