@@ -47,7 +47,7 @@ public class ControleDeEntregas {
 
 
     @POST
-    @Transactional
+    @Transactional 
     public Response criarEntregas(Entregas entrega) {
 
         try {

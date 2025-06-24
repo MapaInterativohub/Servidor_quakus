@@ -11,9 +11,9 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 // Importa as anotações JAX-RS usadas para mapear os endpoints HTTP
 
-
 @RegisterRestClient(configKey = "frota-api")
-// Essa anotação registra a interface como cliente REST com base em uma chave definida no application.properties
+// Essa anotação registra a interface como cliente REST com base em uma chave
+// definida no application.properties
 // Exemplo de configuração no application.properties:
 // frota-api/mp-rest/url=http://localhost:8081
 
@@ -22,18 +22,16 @@ import jakarta.ws.rs.Path;
 // Ela corresponde ao controller da API de Frotas: @Path("/api/frotas")
 public interface FrotaClient {
 
-
-        @GET
+    @GET
     @Path("/disponibilidade") // apenas o endpoint
     // Realiza uma chamada GET para /api/frotas/disponibilidade
     // Utilizado para verificar se há veículos e motoristas disponíveis na frota
     DisponibilidadeDTO verificarDisponibilidade();
 
-
     @GET
     @Path("/disponiveis")
     // Realiza uma chamada GET para /api/frotas/disponiveis
-    // Retorna a lista de frotas que estão com veículo, motorista e status disponíveis
-    List<FrotaDTO> listarFrotasDisponiveis(); 
+    // Retorna a lista de frotas que estão com veículo, motorista e status
+    // disponíveis
+    List<FrotaDTO> listarFrotasDisponiveis();
 }
-
